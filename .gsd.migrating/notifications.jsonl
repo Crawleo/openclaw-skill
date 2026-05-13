@@ -1,0 +1,2 @@
+{"id":"09c9072a-9bcb-4d7a-9da0-47faaae4dcf8","ts":"2026-05-13T22:05:00.182Z","severity":"warning","message":"Web search: Set BRAVE_API_KEY or use an Anthropic model for built-in search","source":"notify","read":false}
+{"id":"f0b78ed0-90e4-4465-af94-7ab571a46793","ts":"2026-05-13T22:05:59.708Z","severity":"info","message":"Project already initialized. Use `/gsd auto` to continue or `/gsd discuss` to start a new milestone.","source":"notify","read":false}
