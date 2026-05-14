@@ -1,2 +1,10 @@
 {"id":"09c9072a-9bcb-4d7a-9da0-47faaae4dcf8","ts":"2026-05-13T22:05:00.182Z","severity":"warning","message":"Web search: Set BRAVE_API_KEY or use an Anthropic model for built-in search","source":"notify","read":false}
 {"id":"f0b78ed0-90e4-4465-af94-7ab571a46793","ts":"2026-05-13T22:05:59.708Z","severity":"info","message":"Project already initialized. Use `/gsd auto` to continue or `/gsd discuss` to start a new milestone.","source":"notify","read":false}
+{"id":"b063ee8d-f533-4a4a-9a7c-335f522ff340","ts":"2026-05-13T22:06:29.348Z","severity":"warning","message":"External state migration warning: Migration rename/copy failed: EPERM, Permission denied: \\\\?\\D:\\Pycharm Projects\\Crawleo\\Integrations\\openclaw-skill\\.gsd '\\\\?\\D:\\Pycharm Projects\\Crawleo\\Integrations\\openclaw-skill\\.gsd'","source":"notify","read":false}
+{"id":"7deed85d-b5a4-4448-a56e-f73efb404ce1","ts":"2026-05-13T22:06:31.654Z","severity":"info","message":"Analyzing codebase...","source":"notify","read":false}
+{"id":"9774f798-8bbf-409f-99aa-530aeee2c08f","ts":"2026-05-13T22:06:31.657Z","severity":"success","message":"✓ Analyzed codebase","source":"notify","read":false}
+{"id":"5d688e96-5c32-4a92-9942-b290393c108c","ts":"2026-05-13T22:06:31.657Z","severity":"info","message":"Reviewing prior context...","source":"notify","read":false}
+{"id":"7aceecd3-29f3-44f0-85a3-c7839f3847b8","ts":"2026-05-13T22:06:31.659Z","severity":"success","message":"✓ Reviewed prior context","source":"notify","read":false}
+{"id":"1ba5f499-efd9-4545-91fb-90cd4ad4b714","ts":"2026-05-13T22:19:01.165Z","severity":"info","message":"discuss-milestone M001 is waiting for your approval - pausing before more tool calls run.","source":"notify","read":false}
+{"id":"9315ff5f-6dad-498d-8341-3e82336aaa85","ts":"2026-05-14T00:09:26.210Z","severity":"info","message":"discuss-milestone M001 is waiting for your approval - pausing before more tool calls run.","source":"notify","read":false}
+{"id":"ca3044fa-fd92-4819-b996-ce12de207eed","ts":"2026-05-14T00:19:10.941Z","severity":"success","message":"Milestone M001 ready.","source":"notify","read":false}
