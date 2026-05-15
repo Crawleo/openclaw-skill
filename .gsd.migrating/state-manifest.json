@@ -1,0 +1,224 @@
+{
+  "version": 1,
+  "exported_at": "2026-05-14T00:18:30.927Z",
+  "milestones": [
+    {
+      "id": "M001",
+      "title": "Crawleo OpenClaw Skill",
+      "status": "active",
+      "depends_on": [],
+      "created_at": "2026-05-14T00:18:30.462Z",
+      "completed_at": null,
+      "vision": "Build a complete OpenClaw skill package that connects OpenClaw to Crawleo's documented web intelligence capabilities: search, crawling/content extraction, Google Search, Google Maps, and Headful Browser. The package uses Crawleo branding only, covers every Crawleo-documented endpoint/tool, includes REST-backed helpers, setup docs, endpoint examples, error handling, and offline verification with optional live tests gated by CRAWLEO_API_KEY.",
+      "success_criteria": [
+        "Every Crawleo-documented REST endpoint is represented: /search, /google-search, /google-maps, /crawl, and /headful-browser.",
+        "The corresponding Crawleo MCP tool names are documented: search_web, google_search, google_maps, crawl_web, and headful_browser.",
+        "Every endpoint has documented parameters, types, defaults, limits/enums where documented, examples, expected response shape, and source links.",
+        "The package contains working REST wrappers/helpers, README, setup instructions, examples, tests, and endpoint coverage checklist.",
+        "Default verification runs offline without Crawleo API calls or credit usage; optional live tests are gated by explicit enablement and CRAWLEO_API_KEY.",
+        "Deliverables use Crawleo branding only and do not invent undocumented endpoints or parameters."
+      ],
+      "key_risks": [
+        {
+          "risk": "Exact OpenClaw skill loader convention is absent from the repo.",
+          "whyItMatters": "If the package assumes the wrong hidden runtime convention, it may be less directly installable; the first slices must make the package self-contained and explicit."
+        },
+        {
+          "risk": "Crawleo documentation sources are not perfectly aligned.",
+          "whyItMatters": "OpenAPI appears narrower than endpoint-specific docs, so relying on one source could skip documented capabilities."
+        },
+        {
+          "risk": "Live Crawleo calls consume credits and require a valid key.",
+          "whyItMatters": "Verification must not accidentally spend credits or fail due to unavailable secrets."
+        }
+      ],
+      "proof_strategy": [
+        {
+          "riskOrUnknown": "Complete Crawleo endpoint/tool coverage",
+          "retireIn": "S01",
+          "whatWillBeProven": "a contract inventory maps every endpoint/tool to source docs with parameters, examples, response shapes, and ambiguity notes."
+        },
+        {
+          "riskOrUnknown": "OpenClaw package shape without an existing loader convention",
+          "retireIn": "S02",
+          "whatWillBeProven": "the repo has a self-contained skill package layout with explicit entry documentation and implementation/test scaffolding."
+        },
+        {
+          "riskOrUnknown": "REST wrappers and failure behavior work without leaking secrets",
+          "retireIn": "S03",
+          "whatWillBeProven": "wrappers validate parameters, construct Crawleo requests, require CRAWLEO_API_KEY, and normalize documented errors."
+        },
+        {
+          "riskOrUnknown": "Default verification is safe and complete",
+          "retireIn": "S05",
+          "whatWillBeProven": "offline tests cover every endpoint and optional live tests are opt-in and key-gated."
+        }
+      ],
+      "verification_contract": "Static artifact checks plus offline unit/fixture tests must prove every endpoint contract, wrapper, example, and coverage checklist entry exists and is wired. Parameter validation and URL construction are tested without network calls.",
+      "verification_integration": "The final integration slice must verify the assembled package coherently connects contracts, wrappers, README, examples, tests, and coverage checklist. Optional live tests may be provided but are not required for default verification.",
+      "verification_operational": "Missing API key, invalid parameters, Crawleo error responses, quota/rate/concurrency failures, and service errors must produce actionable messages. Default verification must not consume Crawleo credits.",
+      "verification_uat": "Human judgment should only be needed to confirm the package is an acceptable OpenClaw skill shape if an exact OpenClaw loader convention is unavailable in repo evidence.",
+      "definition_of_done": [
+        "All planned slices are complete.",
+        "Every active R### requirement is mapped and re-checked against deliverables.",
+        "All Crawleo endpoint contracts are represented with source links and ambiguity notes.",
+        "REST wrappers and tests cover all documented endpoints.",
+        "README, setup instructions, usage examples, optional MCP notes, and coverage checklist are complete.",
+        "Offline verification passes by default without secrets or network.",
+        "A final scan confirms no non-Crawleo brand references and no invented undocumented endpoint/parameter claims."
+      ],
+      "requirement_coverage": "Covers R001-R010 in M001. Defers R011 exact official OpenClaw runtime loader conformance and R012 first-class MCP execution path. Keeps R013-R015 out of scope.",
+      "boundary_map_markdown": "### S01 → S02\n\nProduces:\n- Crawleo endpoint contract inventory with endpoint/tool names, parameter schemas, examples, response shapes, source URLs, and ambiguity notes.\n\nConsumes:\n- Crawleo docs index, endpoint docs, public docs MCP descriptor, and OpenAPI evidence.\n\n### S01 + S02 → S03\n\nProduces:\n- Stable package layout and contract data for all Crawleo capabilities.\n\nConsumes:\n- Endpoint names, parameter rules, auth requirements, documented costs, and response/error shapes.\n\n### S03 → S04\n\nProduces:\n- Implemented REST wrappers, validation behavior, and error normalization semantics.\n\nConsumes:\n- Contract inventory and package scaffold.\n\n### S03 + S04 → S05\n\nProduces:\n- User-facing examples, docs, and implementation surfaces that tests can exercise.\n\nConsumes:\n- Endpoint wrappers and documented expected behavior.\n\n### S05 → S06\n\nProduces:\n- Passing offline test suite and optional live test path.\n\nConsumes:\n- Full package artifacts, docs, tests, and coverage checklist for integrated verification.",
+      "sequence": 0
+    }
+  ],
+  "slices": [
+    {
+      "milestone_id": "M001",
+      "id": "S01",
+      "title": "Crawleo endpoint contract inventory",
+      "status": "pending",
+      "risk": "high",
+      "depends": [],
+      "demo": "A generated/curated endpoint contract file lists every Crawleo-documented REST endpoint and MCP tool with parameters, defaults, limits, examples, response shapes, source links, and ambiguity notes.",
+      "created_at": "2026-05-14T00:18:30.465Z",
+      "completed_at": null,
+      "full_summary_md": "",
+      "full_uat_md": "",
+      "goal": "Retire the coverage risk by producing an auditable Crawleo endpoint/tool contract inventory before implementation.",
+      "success_criteria": "- Contract inventory includes /search, /google-search, /google-maps, /crawl, /headful-browser.\n- Contract inventory includes MCP tool names search_web, google_search, google_maps, crawl_web, headful_browser.\n- Each entry includes required/optional parameters, types, documented defaults/limits/enums/validation rules, examples, expected response shape, source links, and ambiguity notes.\n- Ambiguous fields use “not specified in Crawleo docs.”",
+      "proof_level": "Static proof through source-linked contract inventory and coverage checklist draft.",
+      "integration_closure": "Downstream slices consume the contract inventory as the stable source for wrappers, docs, and tests.",
+      "observability_impact": "Creates an endpoint coverage artifact that makes omissions visible early.",
+      "sequence": 1,
+      "replan_triggered_at": null,
+      "is_sketch": 0,
+      "sketch_scope": ""
+    },
+    {
+      "milestone_id": "M001",
+      "id": "S02",
+      "title": "OpenClaw skill package scaffold",
+      "status": "pending",
+      "risk": "high",
+      "depends": [
+        "S01"
+      ],
+      "demo": "The repo has a self-contained Crawleo OpenClaw skill package structure with README skeleton, manifest/instructions, examples, tests, and package metadata ready for endpoint wiring.",
+      "created_at": "2026-05-14T00:18:30.466Z",
+      "completed_at": null,
+      "full_summary_md": "",
+      "full_uat_md": "",
+      "goal": "Create a practical self-contained package layout despite missing exact OpenClaw loader evidence in the repo.",
+      "success_criteria": "- Package directories/files exist for skill instructions or manifest, source implementation, examples, tests, README, and coverage docs.\n- Scaffold uses Crawleo branding only.\n- Package documents assumptions about OpenClaw compatibility and avoids hidden runtime claims.\n- Scaffold is ready for endpoint wrapper implementation.",
+      "proof_level": "Static package-shape proof with file existence and basic metadata checks.",
+      "integration_closure": "S03 can add Crawleo client/wrappers into the scaffold without restructuring.",
+      "observability_impact": "Makes package boundaries and assumptions explicit for downstream agents.",
+      "sequence": 2,
+      "replan_triggered_at": null,
+      "is_sketch": 0,
+      "sketch_scope": ""
+    },
+    {
+      "milestone_id": "M001",
+      "id": "S03",
+      "title": "Crawleo REST client and endpoint wrappers",
+      "status": "pending",
+      "risk": "high",
+      "depends": [
+        "S01",
+        "S02"
+      ],
+      "demo": "OpenClaw-facing helpers can construct validated Crawleo requests for all five endpoints and normalize Crawleo auth/API/rate/quota errors without exposing secrets.",
+      "created_at": "2026-05-14T00:18:30.466Z",
+      "completed_at": null,
+      "full_summary_md": "",
+      "full_uat_md": "",
+      "goal": "Implement the core Crawleo REST integration for every documented endpoint with parameter validation and actionable errors.",
+      "success_criteria": "- REST client reads CRAWLEO_API_KEY and sends Crawleo-documented auth headers.\n- Wrappers exist for /search, /google-search, /google-maps, /crawl, and /headful-browser.\n- Documented required fields, enums, and limits are validated before request construction.\n- Missing key, invalid params, 400/401/402/403/429/500-like errors are normalized into actionable messages.\n- No API key values are logged or printed.",
+      "proof_level": "Unit/fixture proof for validation, request construction, and error normalization; no live API required.",
+      "integration_closure": "S04 documents real wrapper behavior; S05 tests the stable wrapper API.",
+      "observability_impact": "Adds explicit failure modes and normalized error surfaces for agent troubleshooting.",
+      "sequence": 3,
+      "replan_triggered_at": null,
+      "is_sketch": 0,
+      "sketch_scope": ""
+    },
+    {
+      "milestone_id": "M001",
+      "id": "S04",
+      "title": "Skill documentation, examples, and coverage checklist",
+      "status": "pending",
+      "risk": "medium",
+      "depends": [
+        "S03"
+      ],
+      "demo": "A user can read the README and coverage checklist to install the skill, configure CRAWLEO_API_KEY, understand every Crawleo capability, and copy examples for each endpoint.",
+      "created_at": "2026-05-14T00:18:30.467Z",
+      "completed_at": null,
+      "full_summary_md": "",
+      "full_uat_md": "",
+      "goal": "Make the package usable by future OpenClaw users and agents without this conversation.",
+      "success_criteria": "- README explains purpose, installation/setup, authentication, usage, error behavior, credit-aware notes, and optional Crawleo MCP setup.\n- Every endpoint has at least one usage example.\n- Endpoint coverage checklist maps each Crawleo endpoint/tool to implementation, docs, examples, and tests.\n- Docs use only Crawleo branding and mark ambiguity as “not specified in Crawleo docs.”",
+      "proof_level": "Static documentation proof plus link/file consistency checks.",
+      "integration_closure": "S05 uses docs/examples as test targets and S06 validates the complete package.",
+      "observability_impact": "Coverage checklist makes missing docs/examples/tests visible.",
+      "sequence": 4,
+      "replan_triggered_at": null,
+      "is_sketch": 0,
+      "sketch_scope": ""
+    },
+    {
+      "milestone_id": "M001",
+      "id": "S05",
+      "title": "Offline and optional live verification suite",
+      "status": "pending",
+      "risk": "medium",
+      "depends": [
+        "S03",
+        "S04"
+      ],
+      "demo": "Offline tests validate every endpoint wrapper, parameter rule, URL construction path, and error fixture; optional live tests are gated behind CRAWLEO_API_KEY.",
+      "created_at": "2026-05-14T00:18:30.467Z",
+      "completed_at": null,
+      "full_summary_md": "",
+      "full_uat_md": "",
+      "goal": "Prove the package works safely by default and can be live-tested intentionally.",
+      "success_criteria": "- Offline tests cover all five endpoint wrappers.\n- Offline tests cover missing API key behavior, validation failures, URL/query construction, and Crawleo error fixture normalization.\n- Optional live tests are skipped unless explicitly enabled and CRAWLEO_API_KEY is present.\n- Live test docs warn about Crawleo credit usage and use minimal-cost examples.",
+      "proof_level": "Command proof through default offline test suite; optional live path is statically and conditionally verified.",
+      "integration_closure": "S06 can use test results as final package evidence.",
+      "observability_impact": "Test failures identify endpoint/validation/error-normalization gaps directly.",
+      "sequence": 5,
+      "replan_triggered_at": null,
+      "is_sketch": 0,
+      "sketch_scope": ""
+    },
+    {
+      "milestone_id": "M001",
+      "id": "S06",
+      "title": "Final OpenClaw integration proof",
+      "status": "pending",
+      "risk": "medium",
+      "depends": [
+        "S05"
+      ],
+      "demo": "The assembled skill is checked end-to-end as a package: all files exist, no non-Crawleo references appear, coverage matches Crawleo docs, and verification commands pass.",
+      "created_at": "2026-05-14T00:18:30.467Z",
+      "completed_at": null,
+      "full_summary_md": "",
+      "full_uat_md": "",
+      "goal": "Verify the package is complete, coherent, Crawleo-only, and ready for execution by downstream agents.",
+      "success_criteria": "- All required artifacts exist: package files, README, examples, tests, endpoint coverage checklist.\n- Coverage checklist confirms all documented Crawleo capabilities are implemented and tested.\n- Offline verification command passes.\n- Static scan finds no non-Crawleo brand references and no invented undocumented endpoint/parameter claims.\n- Final summary points to key files and verification evidence.",
+      "proof_level": "Integrated static + command proof over the complete package.",
+      "integration_closure": "Completes the milestone by proving all slices assemble into one usable Crawleo OpenClaw skill package.",
+      "observability_impact": "Final verification evidence gives future agents a compact trust surface for what was proven.",
+      "sequence": 6,
+      "replan_triggered_at": null,
+      "is_sketch": 0,
+      "sketch_scope": ""
+    }
+  ],
+  "tasks": [],
+  "decisions": [],
+  "verification_evidence": []
+}
