@@ -1,7 +1,7 @@
 {
   "name": "crawleo",
   "displayName": "Crawleo OpenClaw Skill",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "OpenClaw skill package for Crawleo web search, Google Search, Google Maps, crawling, and headful browser crawling.",
   "brand": "Crawleo",
   "entrypoint": "./src/index.js",
@@ -36,12 +36,14 @@
     "defaultCommands": [
       "npm test",
       "npm run verify:contracts",
-      "npm run verify:scaffold"
+      "npm run verify:examples",
+      "npm run verify:scaffold",
+      "npm run verify:final"
     ],
     "liveCallsRequire": [
       "CRAWLEO_API_KEY",
-      "explicit live-test enablement"
+      "CRAWLEO_ENABLE_LIVE_TESTS=1"
     ]
   },
-  "status": "scaffold-only; REST wrappers are implemented in a later slice"
+  "status": "REST wrappers implemented; default verification is offline and optional live tests are explicitly gated"
 }

@@ -1,6 +1,15 @@
 ---
 name: crawleo
 description: Use when OpenClaw needs Crawleo-powered web search, Google Search SERP data, Google Maps place data, URL crawling/content extraction, or headful browser crawling through the Crawleo REST API.
+user-invocable: true
+metadata:
+  {
+    "openclaw":
+      {
+        "requires": { "bins": [], "env": ["CRAWLEO_API_KEY"] },
+        "primaryEnv": "CRAWLEO_API_KEY",
+      },
+  }
 ---
 
 # Crawleo OpenClaw Skill
@@ -25,7 +34,9 @@ Crawleo endpoint-specific docs take precedence over the local OpenAPI snapshot w
 
 ## Authentication and Secret Handling
 
-Live Crawleo REST calls require `CRAWLEO_API_KEY`. Send it with Crawleo's documented `x-api-key` header by default. Crawleo also documents `Authorization: Bearer YOUR_API_KEY` as an alternate authentication style.
+Live Crawleo REST calls require `CRAWLEO_API_KEY`. OpenClaw understands this skill's `primaryEnv` metadata and should ask the user to provide `CRAWLEO_API_KEY` when it is missing. Do not attempt live Crawleo calls until that environment variable is available.
+
+Send the key with Crawleo's documented `x-api-key` header by default. Crawleo also documents `Authorization: Bearer YOUR_API_KEY` as an alternate authentication style.
 
 Create a client with `createCrawleoClient({ apiKey: process.env.CRAWLEO_API_KEY })`, then call `client.search`, `client.googleSearch`, `client.googleMaps`, `client.crawl`, or `client.headfulBrowser` with endpoint parameters from `contracts/crawleo-endpoints.json`.
 

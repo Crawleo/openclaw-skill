@@ -53,7 +53,16 @@ After installation, verify OpenClaw can see the skill:
 openclaw skills info crawleo
 ```
 
-Expected result: the skill is listed as eligible with no missing requirements.
+Expected result: the skill is listed as eligible and shows `primaryEnv: CRAWLEO_API_KEY`.
+
+OpenClaw understands the skill metadata:
+
+```yaml
+primaryEnv: CRAWLEO_API_KEY
+requires.env: [CRAWLEO_API_KEY]
+```
+
+So if the key is missing, OpenClaw can prompt the user to provide `CRAWLEO_API_KEY` before running live Crawleo calls.
 
 ### Local personal-skill install
 
